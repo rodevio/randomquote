@@ -1,10 +1,9 @@
-import Header from '../comps/Header';
+import Layout from '../comps/MyLayout';
 
 export default function Index() {
     return (
-    <div>
-        <Header />
-        <p>Hello Next.js</p>
-    </div>
+        <Layout>
+            <p>Hello Next.js</p>
+        </Layout>
     );
 }
