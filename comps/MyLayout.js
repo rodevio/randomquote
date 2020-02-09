@@ -1,3 +1,5 @@
+// Rendering Child Components - Method 1 - Layout as a Higher Order Component
+
 import Header from './Header';
 
 const layoutStyle = {
@@ -6,11 +8,13 @@ const layoutStyle = {
   border: '1px solid #DDD'
 };
 
-const Layout = props => (
-  <div style={layoutStyle}>
-    <Header />
-    {props.children}
-  </div>
-);
+const withLayout = Page => {
+  return () => (
+    <div style={layoutStyle}>
+      <Header />
+      <Page />
+    </div>
+  );
+};
 
-export default Layout;
+export default withLayout;

@@ -1,9 +1,7 @@
-import Layout from '../comps/MyLayout';
+// Rendering Child Components - Method 1 - Layout as a Higher Order Component
 
-export default function About() {
-    return (
-        <Layout>
-            <p>This is the about page</p>
-        </Layout>
-    );
-}
+import withLayout from '../comps/MyLayout';
+
+const Page = () => <p>This is the about page</p>;
+
+export default withLayout(Page);
