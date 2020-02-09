@@ -1,7 +1,9 @@
-// Rendering Child Components - Method 1 - Layout as a Higher Order Component
+// Rendering Child Components - Method 2 - Page content as a prop
 
-import withLayout from '../comps/MyLayout';
+import Layout from '../components/MyLayout.js';
 
-const Page = () => <p>This is the about page</p>;
+const aboutPageContent = <p>This is the about page</p>;
 
-export default withLayout(Page);
+export default function About() {
+    return <Layout content={aboutPageContent} />;
+}

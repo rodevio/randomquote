@@ -1,7 +1,9 @@
-// Rendering Child Components - Method 1 - Layout as a Higher Order Component
+// Rendering Child Components - Method 2 - Page content as a prop
 
-import withLayout from '../comps/MyLayout';
+import Layout from '../components/MyLayout.js';
 
-const Page = () => <p>Hello Next.js</p>;
+const indexPageContent = <p>Hello Next.js</p>;
 
-export default withLayout(Page);
+export default function Index() {
+    return <Layout content={indexPageContent} />;
+}
