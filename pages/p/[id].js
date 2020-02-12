@@ -1,21 +1,22 @@
-// Create a dynamic route by adding a new page called [id].js
-
-// This page will handle dynamic routes only for /pages/p/level1 and not for /pages/p/level1/level2
-
-// the id between [] name is the name of the param received by the page
-// example: /p/level1 ; the query object will have inside { id: 'level1' }
-// this query object can be accessed with useRouter();
-
-import { useRouter } from 'next/router';
 import Layout from '../../components/MyLayout';
+import fetch from 'isomorphic-unfetch';
 
-export default function Post() {
-    const router = useRouter();
+const Post = props => (
+    <Layout>
+        <h1>{props.show.name}</h1>
+        <p>{props.show.summary.replace(/<[/]?[pb]>/g, '')}</p>
+        {props.show.image ? <img src={props.show.image.medium} /> : null}
+    </Layout>
+);
 
-    return (
-        <Layout>
-            <h1>{router.query.id}</h1>
-            <p>This is the blog post content.</p>
-        </Layout>
-    );
-}
+Post.getInitialProps = async function(context) {
+    const { id } = context.query;
+    const res = await fetch(`https://api.tvmaze.com/shows/${id}`);
+    const show = await res.json();
+
+    console.log(`Fetched show: ${show.name}`);
+
+    return { show };
+};
+
+export default Post;
